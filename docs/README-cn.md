@@ -19,7 +19,8 @@
   </p>
 
   <p>
-    <a href="https://xyz-lab.ai">XYZ AI Lab</a>
+    <a href="https://xyz-lab.ai/zh">XYZ AI Lab</a> ·
+    <a href="https://xyz-lab.ai/blogs/ai4ai-at-scale/zh">技术博客</a>
   </p>
 </div>
 

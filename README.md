@@ -19,7 +19,8 @@
   </p>
 
   <p>
-    <a href="https://xyz-lab.ai">XYZ AI Lab</a>
+    <a href="https://xyz-lab.ai">XYZ AI Lab</a> ·
+    <a href="https://xyz-lab.ai/blogs/ai4ai-at-scale/">Technical Blog</a>
   </p>
 </div>
 
