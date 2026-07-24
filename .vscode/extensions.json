@@ -1,0 +1,24 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-yaml",
+        "christian-kohler.path-intellisense",
+        "mhutchie.git-graph",
+        "timonwong.shellcheck",
+        "emilast.LogFileHighlighter",
+        "DavidAnson.vscode-markdownlint",
+        "ZainChen.json",
+        "charliermarsh.ruff",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "mechatroner.rainbow-csv",
+        "tomoki1207.pdf",
+        "matangover.mypy",
+        "tamasfe.even-better-toml",
+        "Leonardo16.nvidia-gpu"
+    ],
+    "unwantedRecommendations": []
+}

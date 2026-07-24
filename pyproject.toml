@@ -1,0 +1,134 @@
+[tool.pyright]
+
+pythonVersion = "3.12"
+reportAbstractUsage = false
+reportGeneralTypeIssues = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownVariableType = false
+reportPrivateImportUsage = false
+
+extraPaths = ["/sgl-workspace/sglang/python"]
+ignore = [".git", ".eggs", "tmp", "third_party", "docs"]
+stubPath = ".typings"
+
+[tool.mypy]
+disable_error_code = ["attr-defined", "has-type", "arg-type"]
+exclude = [".git", ".eggs", "tmp", "third_party", "docs"]
+ignore_missing_imports = true
+mypy_path = [".typings"]
+
+[tool.ruff]
+
+exclude = [
+  ".git",
+  ".eggs",
+  "tmp",
+  "**/*.pyi",
+  "third_party",
+  "docs",
+]
+indent-width = 4
+line-length = 150
+target-version = "py312"
+unsafe-fixes = true
+
+[tool.ruff.lint.pylint]
+max-args = 15
+max-branches = 20
+max-returns = 15
+
+[tool.ruff.lint.mccabe]
+max-complexity = 20 # max length of function name
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+ignore = [
+  "D100",     # missing docstring in public module
+  "D101",     # Missing docstring in public class
+  "D102",     # Missing docstring in public method
+  "D103",     # Missing docstring in public function
+  "D107",     # Missing docstring in __init__
+  "ANN401",   # Dynamically typed expressions (typing.Any) are disallowed in
+  "S301",     # pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue
+  "RET504",   # Unnecessary assignment to {name} before return statement
+  "BLE001",   # Do not catch blind exception: {name}
+  "G004",     # Logging statement uses f-string
+  "ERA001",   # Found commented-out code
+  "D104",     # Missing docstring in public package
+  "ISC001",   # Implicitly concatenated string literals on one line
+  "COM812",   # Trailing comma missing
+  "TD003",    # Missing issue link on the line following this TODO
+  "FIX002",   # Line contains TODO, consider resolving the issue
+  "PIE790",   # Unnecessary pass statement
+  "S101",     # Use of assert detected
+  "EM101",    # Exception must not use a string literal, assign to variable first
+  "SIM108",   # Use ternary operator {contents} instead of if-else-block
+  "TRY003",   # Avoid specifying long messages outside the exception class
+  "D105",     # Missing docstring in magic method
+  "PGH003",   # Use specific rule codes when ignoring type issues
+  "SIM103",   # Return the condition {condition} directly
+  "EM102",    # Exception must not use an f-string literal, assign to variable first
+  "PLR2004",  # Magic value used in comparison, consider replacing {value} with a constant variable
+  "PT018",    # Assertion should be broken down into multiple parts
+  "PLR1711",  # Useless return statement at end of function
+  "RET501",   # Do not explicitly return None in function if it is the only possible return value
+  "RUF015",   # Prefer next({iterable}) over single element slice
+  "NPY002",   # Replace legacy np.random.{method_name} call with np.random.Generator
+  "DTZ007",   # Naive datetime constructed using datetime.datetime.strptime() without %z
+  "S311",     # Standard pseudo-random generators are not suitable for cryptographic purposes
+  "DTZ001",   # datetime.datetime() called without a tzinfo argument
+  "EXE002",   # The file is executable but no shebang is present
+  "T201",     # print found
+  "TRY300",   # Consider moving this statement to an else block
+  "SIM102",   # Use a single if statement instead of nested if statements
+  "FBT002",   # boolean-default-value-positional-argument
+  "PLC0415",  # import should be at the top-level of a file
+  "PERF401",  # Use {message_str} to create a transformed list
+  "SLF001",   # Private member accessed: {access}
+  "C408",     # Unnecessary {kind}() call (rewrite as a literal)
+  "N817",     # CamelCase {name} imported as acronym {asname}
+  "PLR1714",  # Consider merging multiple comparisons: {expression}. Use a set if the elements are hashable.
+  "C420",     # Unnecessary dict comprehension for iterable; use dict.fromkeys instead
+  "S603",     # subprocess call: check for execution of untrusted input
+  "N812",     # Lowercase {name} imported as non-lowercase {asname}
+  "INP001",   # File {filename} is part of an implicit namespace package. Add an __init__.py.
+  "ASYNC240", # Async functions should not use {path_library} methods, use trio.Path or anyio.path
+  "N806",     # non-lowercase-variable-in-function
+  "S105",     # Possible hardcoded password assigned to: "{}" (false positives on `token_type` literal)
+  "S106",     # Possible hardcoded password assigned to argument: "{}" (false positives on token_type kwargs)  # all rules: https://docs.astral.sh/ruff/rules/
+  "PLW0603",  # Using the global statement to update `_TQ_INITIALISED` is discouraged
+  "PLC0207",  # String split more times than necessary — only flagged when the boundary piece is read; behaviour-preserving rsplit/maxsplit rewrites add noise without value
+]
+
+fixable = [
+  "I001",    # Import block is un-sorted or un-formatted
+  "Q000",    # Single quotes found but double quotes preferred
+  "COM812",  # Trailing comma missing
+  "D202",    # No blank lines allowed after function docstring (found {num_lines})
+  "F541",    # f-string without any placeholders
+  "TD",      # flake8-todos (TD)
+  "TCH",     # flake8-type-checking (TCH)
+  "F811",    # Redefinition of unused {name} from {row}
+  "PLR2044", # Line with empty comment
+  "D209",    # Multi-line docstring closing quotes should be on a separate line
+  "I001",    # Import block is un-sorted or un-formatted
+  "C400",    # Unnecessary generator (rewrite using list())
+  "C401",    # Unnecessary generator (rewrite using set())
+  "F401",    # {name} imported but unused; consider using importlib.util.find_spec to test for availability
+  "C402",    # Unnecessary generator (rewrite as a dict comprehension)
+  "C416",    # Unnecessary {obj_type} comprehension (rewrite using {obj_type}())
+  "ANN201",  # Missing return type annotation for public function {name}
+  "ANN202",  # Missing return type annotation for private function {name}
+  "ANN204",  # Missing return type annotation for special method {name}
+  "ANN205",  # Missing return type annotation for staticmethod {name}
+  "ANN206",  # Missing return type annotation for classmethod {name}
+  "RUF022",  # __all__ is not sorted
+]
+
+[tool.ruff.lint.per-file-ignores]
+"axis_recipe/**/*.py" = ["INP001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

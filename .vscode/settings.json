@@ -1,0 +1,28 @@
+{
+    "python.languageServer": "Pylance",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "mypy.enabled": true,
+    "mypy.targets": [
+        "./axrl",
+    ],
+    "mypy.configFile": "./pyproject.toml",
+    "terminal.integrated.cursorStyle": "underline",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit",
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "python.defaultInterpreterPath": "/usr/bin/python",
+    "python-envs.defaultPackageManager": "ms-python.python:pip",
+    "python.terminal.activateEnvInCurrentTerminal": false,
+    "python.terminal.activateEnvironment": false,
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+}

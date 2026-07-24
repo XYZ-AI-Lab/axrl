@@ -1,0 +1,380 @@
+controller:
+    run_mode: eval_only
+    output_dir_name: blackbox-rl
+    colocated: true
+    num_rollout_actors: 32
+    num_cpus_per_actor: 1
+    max_running_requests: 32
+    smoke_eval_rollouts: null
+    save_eval_rollouts: true
+    allow_prefix_merging: true
+eval_only:
+    model: null
+megatron_worker:
+    model:
+        name: Qwen/Qwen3-4B-Instruct-2507
+        trust_remote_code: true
+        seq_length: 65536
+    model_role: actor
+    seed: 42
+    tp_size: 4
+    pp_size: 1
+    vpp_size: null
+    dp_size: 1
+    cp_size: 2
+    ep_size: 1
+    etp_size: 1
+    distributed_timeout_seconds: 1800
+    enable_routing_replay: false
+    replay_routing_for_loss_tokens_only: false
+    fp8: null
+    fp8_recipe: blockwise
+    data_loader:
+        num_workers: 4
+    padding_sample_length: 4
+    train_micro_batch_size: 1
+    eval_micro_batch_size: 1
+    global_batch_size: 512
+    use_dynamic_batch_size: true
+    num_epochs: 100
+    moe_aux_loss_coeff: 0
+    moe_router_load_balancing_type: none
+    recompute_granularity: full
+    recompute_method: uniform
+    recompute_num_layers: 1
+    recompute_modules: null
+    cpu_offloading: false
+    cpu_offloading_num_layers: 0
+    cpu_offloading_double_buffering: false
+    log_every_k_steps: 1
+    checkpoint_dir: checkpoints/megatron
+    checkpoint_step: null
+    most_recent_checkpoint_k: 2
+    save_hf_checkpoint: false
+    reset_init_weights_every_k_steps: null
+    log_microbatches: false
+    log_gpu_usaegs: true
+    metric_logger_config:
+        logger_type: console
+        name: main-process
+        group_name: default_group
+        project_name: axrl
+        run_id: null
+    log_level: info
+    fp16: false
+    bf16: true
+    use_gloo_process_groups: true
+    apply_rope_fusion: null
+    attention_backend: flash
+    deterministic_mode: true
+    batch_invariant_mode: false
+    use_language_model_only: false
+    spike_debug:
+        enabled: false
+        warmup_steps: 10
+        spike_ratio: 2.0
+        history_window: 100
+        max_snapshots: 3
+        save_per_param_grads: true
+    optimizer:
+        optimizer: adam
+        lr: 1.0e-06
+        min_lr: 1.0e-07
+        weight_decay: 0.1
+        use_distributed_optimizer: true
+        clip_grad: 1.0
+        fp16: false
+        bf16: true
+        adam_beta1: 0.9
+        adam_beta2: 0.999
+        optimizer_cpu_offload: false
+        optimizer_offload_fraction: 0.0
+        use_stateless_adam: false
+    lr_scheduler:
+        init_lr: 1.0e-07
+        max_lr: 1.0e-06
+        min_lr: 1.0e-06
+        lr_warmup_steps: 50
+        lr_decay_steps: 1000000
+        lr_decay_style: constant
+        start_wd: 0.01
+        end_wd: 0.01
+        wd_incr_steps: 1000000
+        wd_incr_style: constant
+        use_checkpoint_opt_param_scheduler: true
+        override_opt_param_scheduler: false
+        wsd_decay_steps: null
+        lr_wsd_decay_style: null
+    num_dataloader_workers: 0
+    inference_only: false
+    shuffle_train_data: false
+    enable_fp32_lm_head: false
+    use_magi_merged_forward: true
+    use_magi_flat_forward: false
+value_worker: null
+rollout_worker:
+    name: default-worker
+    engine_type: sglang
+    model:
+        name: Qwen/Qwen3-4B-Instruct-2507
+        trust_remote_code: true
+        seq_length: 65536
+    sampling_config:
+        temperature: 1.0
+        top_p: 1.0
+        top_k: -1
+        min_p: 0.0
+        frequency_penalty: 0.0
+        presence_penalty: 0.0
+        repetition_penalty: 1.0
+        max_total_tokens: 65536
+        max_new_tokens: null
+        stop: null
+    gpu_memory_utilization: 0.7
+    dp_size: 1
+    tp_size: 4
+    pp_size: 1
+    ep_size: 1
+    moe_a2a_backend: none
+    moe_runner_backend: null
+    enable_routing_replay: false
+    num_workers: 2
+    clear_partial_outputs_after_abort: false
+    continue_generation_after_abort: true
+    log_level: info
+    max_running_requests: 32
+    max_running_requests_eval: null
+    max_num_batched_tokens: null
+    load_dummy_weights: false
+    attention_backend: null
+    kv_cache_dtype: auto
+    prefill_max_requests: null
+    enable_fp32_lm_head: true
+    enable_metrics: true
+    dtype: bfloat16
+    master_addr: 127.0.0.1
+    master_port: 20250
+    nnodes: 1
+    node_rank: 0
+    max_imbalance: 16
+train_datasets:
+-   name: newfacade/LeetCodeDataset/train
+    data_path: null
+    eval_num_rollouts_per_prompt: null
+    subset_key: null
+test_datasets:
+-   name: newfacade/LeetCodeDataset/test
+    data_path: null
+    eval_num_rollouts_per_prompt: 8
+    subset_key: null
+eval_sampling_config:
+    temperature: 0.7
+    top_p: 0.9
+    top_k: -1
+    min_p: 0.0
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    repetition_penalty: 1.0
+    max_total_tokens: 65536
+    max_new_tokens: null
+    stop: null
+train_sampling_config:
+    temperature: 1.0
+    top_p: 1.0
+    top_k: -1
+    min_p: 0.0
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    repetition_penalty: 1.0
+    max_total_tokens: 65536
+    max_new_tokens: null
+    stop: null
+grpo:
+    loss_type: grpo2
+    clip_ratio_high: 0.28
+    clip_ratio_low: 0.2
+    dual_clip_neg_adv_factor: 3.0
+    dual_soft_clip: 3
+    log_sample: true
+    normalize_advantage_by_batch_std: false
+    loss_agg_type: token-mean
+    micro_batch_denominator_type: token
+    entropy_control:
+        target_entropy: 0.1
+        alpha: 0.0
+        compute_entropy: false
+        top_k: -1
+        top_quantile: 1.0
+        easy_score_cutoff: 0.4
+        epsilon: 1.0e-06
+    kl_control_alpha: 0.0
+    is_base_logprobs: old_logprobs
+    kl_base_logprobs: old_logprobs
+    mismatch_token_clip_max: null
+    mismatch_seq_masking_low: null
+    mismatch_seq_masking_high: null
+    mismatch_token_veto_threshold: null
+    icepop_masking_low: null
+    icepop_masking_high: null
+    turn_reward_alpha: 0.0
+    seq_turn_alpha: null
+    opd:
+        enabled: false
+        backend: sglang
+        teacher_model: null
+        sglang_worker:
+            name: default-worker
+            engine_type: sglang
+            model:
+                name: Qwen/Qwen3-0.6B-Base
+                trust_remote_code: true
+                seq_length: 2048
+            sampling_config:
+                temperature: 1.0
+                top_p: 1.0
+                top_k: -1
+                min_p: 0.0
+                frequency_penalty: 0.0
+                presence_penalty: 0.0
+                repetition_penalty: 1.0
+                max_total_tokens: 4096
+                max_new_tokens: null
+                stop: null
+            gpu_memory_utilization: 0.6
+            dp_size: 1
+            tp_size: 2
+            pp_size: 1
+            ep_size: 1
+            moe_a2a_backend: none
+            moe_runner_backend: null
+            enable_routing_replay: false
+            num_workers: 1
+            clear_partial_outputs_after_abort: false
+            continue_generation_after_abort: true
+            log_level: info
+            max_running_requests: 32
+            max_running_requests_eval: null
+            max_num_batched_tokens: null
+            load_dummy_weights: false
+            attention_backend: null
+            kv_cache_dtype: auto
+            prefill_max_requests: null
+            enable_fp32_lm_head: true
+            enable_metrics: true
+            dtype: bfloat16
+            master_addr: 127.0.0.1
+            master_port: 20250
+            nnodes: 1
+            node_rank: 0
+            max_imbalance: 16
+        sglang_host: null
+        sglang_port: null
+        opd_alpha: 0.1
+        reverse_kl_clip: 10.0
+        student_logprob_source: cur_logprobs
+        normalize_student_logprob_scale: false
+        teacher_weight_name: opd_teacher_weights
+    normalize_advantages_over_valid_tokens_in_batch: false
+    ppo_value: null
+sft:
+    compute_accuracy: false
+    compute_entropy: false
+online_rl_train:
+    eval_on_start: true
+    num_rollouts_per_conversation: 8
+    model_sync_every_n_global_updates: 4
+    checkpoint_every_n_global_updates: null
+    eval_every_n_global_updates: 16
+    batch_rollout_for_n_global_updates: 4
+    max_global_updates: 4000
+    strict_on_policy: false
+    reward_mean_type: group
+    reward_std_type: group
+    reward_history_size: 64
+    sample_type: uniform
+    filter_zero_std: false
+    max_prompt_length: null
+    sort_sampled_prompts_by_response_length: true
+    rollout_save_filename: valid_rollouts
+    rollout_save_every_n_global_updates: 16
+    save_all_rollouts: false
+replay_rl_train:
+    sample_dict_path: null
+    rollout_groups_path: null
+mismatch_test:
+    enabled: false
+    name: cur-exp
+    output_dir: tmp/mismatch-test
+    override_rollouts_if_exists: false
+    baseline_samples_path: null
+    baseline_name: null
+logger:
+    logger_type: tensorboard
+    name: main-process
+    group_name: blackbox-rl-local-test
+    project_name: BlackBoxRL
+    run_id: null
+openai_proxy:
+    host: 0.0.0.0
+    public_host: null
+    port: 0
+    served_model_name: null
+    request_timeout_seconds: 1200.0
+    adapter_num_processors: 1
+    adapter_timeout_seconds: 300.0
+    tool_call_parser: qwen
+    reasoning_parser: qwen3
+    exposure:
+        exposed_base_url: null
+        allow_out: []
+        tunnel:
+            command:
+            - cloudflared
+            - tunnel
+            - --url
+            - http://127.0.0.1:{port}
+            ready_url_regex: https://[-a-zA-Z0-9.]+\.trycloudflare\.com
+            startup_timeout_seconds: 30.0
+openhands:
+    command:
+    - openhands
+    api_key: EMPTY
+    llm_timeout_seconds: 1200.0
+    suppress_banner: true
+    load_public_skills: false
+    extra_env: {}
+    e2b:
+        template: axrl-openhands
+        timeout_seconds: 1800
+        command_timeout_seconds: 0.0
+        request_timeout_seconds: 60.0
+        secure: true
+        api_key_env: E2B_API_KEY
+        dotenv_path: .env
+        workdir: /workspace
+        solution_root: /workspace
+        metadata: {}
+        envs: {}
+        user: null
+openhands_env:
+    test_file_dir: tmp/openhands-case-study
+    initial_request_timeout_seconds: 360.0
+    request_timeout_seconds: 60.0
+    max_model_calls: 16
+    collect_file_on_finish: true
+verifier_e2b:
+    template: axrl-openhands
+    timeout_seconds: 120
+    command_timeout_seconds: 0.0
+    request_timeout_seconds: 60.0
+    secure: true
+    api_key_env: E2B_API_KEY
+    dotenv_path: .env
+    workdir: /workspace
+    solution_root: /workspace
+    metadata: {}
+    envs: {}
+    user: null
+verifier_num_processors: 1
+verifier_timeout_seconds: 30.0
+verifier_memory_limit_gib: 16
