@@ -1,4 +1,10 @@
-# AxisRL
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/figs/axisrl-logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/figs/axisrl-logo-light.svg">
+    <img alt="AxisRL - Agentic Post-Training" src="docs/figs/axisrl-logo-light.svg" width="680">
+  </picture>
+</div>
 
 AxisRL is an agentic RL post-training framework built on SGLang rollout, Megatron training, and real-world agent workflows.
 
