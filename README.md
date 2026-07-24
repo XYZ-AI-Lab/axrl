@@ -6,6 +6,10 @@
   </picture>
 </div>
 
+<p align="center">
+  <a href="docs/README-cn.md">中文</a>
+</p>
+
 # AxisRL
 
 AxisRL is an agentic RL post-training framework built on SGLang rollout, Megatron training, and real-world agent workflows.
