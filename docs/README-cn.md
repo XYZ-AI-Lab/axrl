@@ -85,26 +85,6 @@ Dockerfile：
 docker/cuda/cu130-sgl0.5.14-mcore0.18-magi.Dockerfile
 ```
 
-如有需要，可在本地构建：
-
-```bash
-docker build \
-  -f docker/cuda/cu130-sgl0.5.14-mcore0.18-magi.Dockerfile \
-  -t axrl:cu130-sgl0.5.14-mcore0.18-magi \
-  .
-```
-
-从仓库根目录启动容器：
-
-```bash
-docker run --gpus all --ipc=host --network=host --shm-size=64g -it \
-  -v "$PWD":/workspace/axrl \
-  -v "$HOME/axrl-data":/root/axrl-data \
-  -w /workspace/axrl \
-  leejunjie/sglang-mcore:cu130-sgl0.5.14-mcore0.18-magi \
-  bash
-```
-
 在容器内安装 AxisRL：
 
 ```bash
