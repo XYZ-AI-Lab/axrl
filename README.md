@@ -4,19 +4,30 @@
     <source media="(prefers-color-scheme: light)" srcset="docs/figs/axisrl-logo-light.svg">
     <img alt="AxisRL - Agentic Post-Training" src="docs/figs/axisrl-logo-light.svg" width="680">
   </picture>
-</div>
 
-<p align="center">
-  <a href="docs/README-cn.md">中文</a>
-</p>
+  <p>
+    <strong>English</strong> ·
+    <a href="docs/README-cn.md">简体中文</a>
+  </p>
+
+  <p>
+    <a href="https://github.com/XYZ-AI-Lab/axrl/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/XYZ-AI-Lab/axrl/actions/workflows/ci.yml/badge.svg"></a>
+    <img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-blue.svg">
+    <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"></a>
+    <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"></a>
+    <a href="https://github.com/XYZ-AI-Lab/axrl/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
+  </p>
+
+  <p>
+    <a href="https://xyz-lab.ai">XYZ AI Lab</a>
+  </p>
+</div>
 
 # AxisRL
 
 AxisRL is an agentic RL post-training framework built on SGLang rollout, Megatron training, and real-world agent workflows.
 
 AxisRL connects high-throughput rollout, large-scale training, weight synchronization, data movement, resource scheduling, and reproducible debugging inside one coherent framework. SGLang and Megatron remain the core serving and training engines; AxisRL handles the system layer around agentic post-training.
-
-GitHub repository: [github.com/XYZ-AI-Lab/axrl](https://github.com/XYZ-AI-Lab/axrl)
 
 ## ✨ Highlights
 
