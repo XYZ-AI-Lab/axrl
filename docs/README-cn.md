@@ -262,13 +262,6 @@ scripts/              运行时辅助脚本
 tests/                Unit、integration 和 consistency tests
 ```
 
-## ✅ 开发检查
-
-```bash
-ruff check .
-pyright
-```
-
 ## 📚 文档
 
 - [English blog](axrl-blog-en.md)
@@ -281,4 +274,3 @@ pyright
 - 添加更多真实 agent recipes 和公开 case studies。
 - 改进 rollout 和 training 之间的异步执行。
 - 扩展对多模态 rollout artifacts 的支持。
-- 继续改进 mismatch analysis、routing replay、spike replay 和其他可复现 debug 工具。

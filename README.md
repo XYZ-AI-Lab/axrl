@@ -262,13 +262,6 @@ scripts/              Runtime helper scripts
 tests/                Unit, integration, and consistency tests
 ```
 
-## ✅ Development Checks
-
-```bash
-ruff check .
-pyright
-```
-
 ## 📚 Documentation
 
 - [English blog](docs/axrl-blog-en.md)
@@ -281,4 +274,3 @@ pyright
 - Add more real-world agent recipes and public case studies.
 - Improve asynchronous execution between rollout and training.
 - Extend support for multimodal rollout artifacts.
-- Continue improving mismatch analysis, routing replay, spike replay, and other reproducible debugging tools.
